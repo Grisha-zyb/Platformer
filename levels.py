@@ -17,19 +17,18 @@ level1 = [
     "                                                                      "
     "                                                                      "
     "                                                                      "
+    "                       1                                              "
+    "                      ----                                            "
     "                                                                      "
+    "                         o                                 2          "
+    "                 ----   ----                                          "
+    "      ------                                                          "
     "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
+    "-------                                                               "
 ]
 
 level1_width = len(level1[0]) * 100
-level1_height = len(level1[1]) * 30
+level1_height = len(level1) * 30
 
 level2 = [
     "                                                                      "
@@ -48,17 +47,17 @@ level2 = [
     "                                                                      "
     "                                                                      "
     "                                                                      "
+    "                                                            2          "
     "                                                                      "
     "                                                                      "
-    "                                                                      "
-    "                                                                      "
+    "                1                                                      "
     "                                                                      "
     "                                                                      "
     "                                                                      "
     "                                                                      "
 ]
-level2_width = len(level1[0]) * 100
-level2_height = len(level1[1]) * 30
+level2_width = len(level2[0]) * 100
+level2_height = len(level2) * 30
 
 level_objects = pygame.sprite.Group()
 
