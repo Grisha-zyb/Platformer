@@ -2,33 +2,33 @@ from settings import *
 from objects import *
 
 level1 = [
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                                                                      "
-    "                       1                                              "
-    "                      ----                                            "
-    "                                                                      "
-    "                         o                                 2          "
-    "                 ----   ----                                          "
-    "      ------                                                          "
-    "                                                                      "
-    "-------                                                               "
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "            o                                                         ",
+    "           ----                                                       ",
+    "    o                                                                 ",
+    "   ----                                                               ",
+    "         1 2                                                          ",
+    "        -----                                                         ",
+    "------         ----------- ---------                                  ",
 ]
 
 level1_width = len(level1[0]) * 100
-level1_height = len(level1) * 30
+level1_height = len(level1) * 60
 
 level2 = [
     "                                                                      "
@@ -75,7 +75,7 @@ class Camera(object):
 def camera_config(camera, target_rect):
     l, t, _, _ = target_rect
     _, _, w, h = camera
-    l, t = -1 + W / 2, -t + H / 2
+    l, t = -l + W / 2, -t + H / 2
 
     l = min(0, l)
     l = max(-(camera.width - W), l)
@@ -95,18 +95,18 @@ def draw_level(level: list):
                 level_objects.add(platform)
                 platforms.add(platform)
             if symbol == "o":
-                coin = MapObject(x, y, 30, 30, coin_image)
+                coin = MapObject(x, y + 25, 30, 30, coin_image)
                 level_objects.add(coin)
                 coins.add(coin)
             if symbol == "1":
-                key = MapObject(x, y, 30, 30, key_image)
+                key = MapObject(x, y + 32, 40, 28, key_image)
                 level_objects.add(key)
 
             if symbol == "2":
-                chest = MapObject(x, y, 80, 60, chest_image)
+                chest = MapObject(x, y + 5, 70, 55, chest_image)
                 level_objects.add(chest)
             x += 100
         x = 0
-        y += 30
+        y += 60
 
     return level_objects, key, chest
