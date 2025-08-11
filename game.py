@@ -5,7 +5,7 @@ pygame.init()
 
 level1_objects, key, chest = draw_level(level1)
 player = Player(50, H - 90, 80, 100, 10, player_images)
-portal = MapObject(-300, -300, 80, 80, portal_image)
+portal = Sprite(-300, -300, 80, 80, 0, portal_image)
 
 level1_objects.add(portal)
 level1_objects.add(player)
@@ -14,6 +14,9 @@ btn_play = Button(465, 250, 350, 100, (170,139,231), "PLAY", 60, (255, 255, 255)
 btn_exit = Button(465, 550, 350, 100, (170, 139, 231), "EXIT", 60, (255, 255, 255))
 
 mode = "menu"
+
+frame_delay = 0
+
 
 game = True
 finish = False
@@ -29,7 +32,7 @@ while game:
                     mode = "game"
                 if btn_exit.rect.collidepoint(x, y):
                     game = False
-    
+
     if mode == "menu":
         window.blit(bg, (0,0))
         window.blit(game_nape, (200, 50))
@@ -69,7 +72,33 @@ while game:
             if pygame.sprite.collide_rect(player, chest) and not is_key:
                 window.blit(find_key_txt, (W // 2 - 300, 50))
 
-            
+            if portal:
+                if coins_count >= 20:
+                    portal.rect.x = 2000
+                    portal.rect.y = 1200
+                    portal.update()
+
+                    frame_delay += 1
+                    if frame_delay >= 4:
+                        portal.next_frame()
+                        frame_delay = 0
+
+                if pygame.sprite.collide_rect(player, portal):
+                    for obj in level1_objects:
+                        obj.kill()
+
+                    for platform in platforms:
+                        platform.kill()
+
+                    del portal
+                    portal = None
+                    level1_objects, key, chest = draw_level(level2)
+                    player.rect.x = 50
+                    player.rect.y = H - 90
+                    level1_objects.add(player)
+
+            if player.rect.y > 1400:
+                finish = True
 
     pygame.display.update()
     clock.tick(fps)

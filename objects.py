@@ -29,6 +29,14 @@ class Sprite(pygame.sprite.Sprite):
     def draw(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+    def update(self):
+        if self.anim_count >= len(self.images) - 1:
+            self.anim_count = 0
+        self.image = pygame.transform.scale(self.images[self.anim_count], (self.width, self.height))
+
+    def next_frame(self):
+        self.anim_count += 1
+
 class Player(Sprite):
     def __init__(self, x, y, width, height, speed, images):
         super().__init__(x, y, width, height, speed, images)

@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 W, H = 1280, 700
-fps = 20
+fps = 30
 coins_count = 0
 is_key = False
 level_count = 1
@@ -32,7 +32,15 @@ player_images = [
 ]
 
 coin_image = pygame.image.load("assets/crystal/crystal.png")
-portal_image = pygame.image.load("assets/portal/frame01.png")
+
+portal_image = [
+    pygame.image.load("assets/portal/frame01.png"),
+    pygame.image.load("assets/portal/frame02.png"),
+    pygame.image.load("assets/portal/frame03.png"),
+    pygame.image.load("assets/portal/frame04.png"),
+    pygame.image.load("assets/portal/frame05.png"),
+]
+
 key_image = pygame.image.load("assets/key/key.png")
 chest_image = pygame.image.load("assets/chest/chest.png")
 
